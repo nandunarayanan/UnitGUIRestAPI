@@ -9,4 +9,6 @@ Transfer the file to the target test folder
     [Timeout]    10 minutes
     Open Connection    ${HOST}    port=${PORT}    username=${USERNAME}    password=${PASSWORD}
     put directory    ${HALHostPath}    ${HALDeployPath}
+    Execute Command    chmod 777 -R ${HALTestFolderPath}
+    Execute Command    {HALTestFolderPathAutExec}
     Close Connection
