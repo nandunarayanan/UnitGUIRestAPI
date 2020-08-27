@@ -10,5 +10,5 @@ Transfer the file to the target test folder
     Open Connection    ${HOST}    port=${PORT}    username=${USERNAME}    password=${PASSWORD}
     put directory    ${HALHostPath}    ${HALDeployPath}
     Execute Command    chmod 777 -R ${HALTestFolderPath}
-    Execute Command    {HALTestFolderPathAutExec}
+    Execute Command    ${HALTestFolderPathAutExec}
     Close Connection
