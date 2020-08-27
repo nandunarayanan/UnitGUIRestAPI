@@ -1,14 +1,18 @@
-*** Settings ***
+* Settings *
 Documentation     This test case ensure that the application under test, test scripts are deployed into remote hardware
 ...               from the Host test server
 Library           SCPLibrary
-Variables		  Configuration.py
+Library           SSHLibrary
+Variables      Configuration.py
 
-*** Test Cases ***
+* Test Cases *
 Transfer the file to the target test folder
     [Timeout]    10 minutes
-    Open Connection    ${HOST}    port=${PORT}    username=${USERNAME}    password=${PASSWORD}
-    put directory    ${HALHostPath}    ${HALDeployPath}
-    Execute Command    chmod 777 -R ${HALTestFolderPath}
-    Execute Command    ${HALTestFolderPathAutExec}
-    Close Connection
+    SCPLibrary.Open Connection    ${HOST}    port=${PORT}    username=${USERNAME}    password=${PASSWORD}
+    SCPLibrary.put directory    ${HALHostPath}    ${HALDeployPath}
+    SCPLibrary.Close Connection
+   
+    SSHLibrary.Open Connection    ${HOST}    port=${PORT}    timeout=30s 
+    Login    ${USERNAME}    ${PASSWORD} 
+    Execute Command    chmod 777 -R ${HALTestFolderPath} 
+    Execute Command    ${HALTestFolderPathAutExec}&
