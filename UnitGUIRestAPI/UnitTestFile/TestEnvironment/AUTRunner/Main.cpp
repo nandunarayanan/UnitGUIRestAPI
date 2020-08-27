@@ -1,3 +1,5 @@
+//! Main.cpp
+
 #include <iostream>
 #include <thread>
 #include "Application/Patient.h"
