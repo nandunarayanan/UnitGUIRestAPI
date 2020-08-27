@@ -5,7 +5,7 @@ USERNAME = 'pi'
 PASSWORD =  'thereisnopassword'
 
 #Test path configurations
-HALTestFolderPath = '/home/pi/HAL_Test_Automation1'
+HALTestFolderPath = '/home/pi/TestEnvironment'
 HALHostPath = '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTestFile/TestEnvironment'
 HALDeployPath = '/home/pi/'
 HALTestFolderPath_iic = '/home/pi/HAL_Test_Automation1/test/interface_i2c_test'
