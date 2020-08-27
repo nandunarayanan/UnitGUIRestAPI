@@ -15,4 +15,4 @@ Transfer the file to the target test folder
     SSHLibrary.Open Connection    ${HOST}    port=${PORT}    timeout=30s 
     Login    ${USERNAME}    ${PASSWORD} 
     Execute Command    chmod 777 -R ${HALTestFolderPath} 
-    Execute Command    ${HALTestFolderPathAutExec}&
+    Execute Command    ${HALTestFolderPathAutExec}
