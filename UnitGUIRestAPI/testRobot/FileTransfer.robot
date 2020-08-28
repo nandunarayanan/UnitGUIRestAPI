@@ -11,8 +11,3 @@ Transfer the file to the target test folder
     SCPLibrary.Open Connection    ${HOST}    port=${PORT}    username=${USERNAME}    password=${PASSWORD}
     SCPLibrary.put directory    ${HALHostPath}    ${HALDeployPath}
     SCPLibrary.Close Connection
-   
-    SSHLibrary.Open Connection    ${HOST}    port=${PORT}    timeout=30s 
-    Login    ${USERNAME}    ${PASSWORD} 
-    Execute Command    chmod 777 -R ${HALTestFolderPath} 
-    Execute Command    ${HALTestFolderPathBotExec}
