@@ -39,13 +39,13 @@ string ServerUtility::EvaluvateTestcase(string msg)
 	return test;
 }
 
-void ServerUtility::readCSV()
+void ServerUtility::readCSV(std::string filename)
 {
     	LOG_DEBUG("Came @ CSV_Test: ");
 	std::vector<std::string> vecOfStr;
         std::string tmp;
         char delim = ';'; 
-	bool result = getFileContent("../Testcase/TestCases.csv", vecOfStr);
+	bool result = getFileContent("../Testcase/" + filename, vecOfStr);
 	
 	if(result)
     	{
