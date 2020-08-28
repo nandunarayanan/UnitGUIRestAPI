@@ -10,7 +10,4 @@ setBatteryPercentage,void,65.65;Success
 getBatteryPercentage,double,;65.650000
 setBatteryStatus,void,0,;Success
 getBatteryStatus,int,;0
-add,double,10,15,;25.000000
-subtract,double,10,15,;-5.000000
-multiply,double,10,15,;150.000000
 divide,double,10,15,;0.666667
