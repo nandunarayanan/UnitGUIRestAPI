@@ -7,5 +7,5 @@ cmake CMakeLists.txt
 echo "=====================make operation====================="
 make clean all
 echo "==============Execution of the Binary=================="
-./Bot
+./BOT
 echo "===============================Completed========================"
