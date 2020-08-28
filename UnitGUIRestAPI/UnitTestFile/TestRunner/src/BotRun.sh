@@ -10,6 +10,6 @@ cmake ..
 echo "=====================make operation====================="
 make
 echo "==============Execution of the Binary=================="
-./Gtest_Exec BotTestCase.csv --gtest_output="xml:ReportFromLinuxGtest.xml"
+./Gtest_Exec BotTestCase.csv --gtest_output="xml:ReportFromLinuxGtestBot.xml"
 
 echo "===============================Completed========================"
