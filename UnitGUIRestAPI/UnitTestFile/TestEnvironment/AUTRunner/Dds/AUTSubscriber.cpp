@@ -248,7 +248,7 @@ public:
     void run(
         uint32_t samples)
     {
-        while(1)
+        while(!calc->m_stop)
         {
 	    if(listener_.Recived_msg != "")
 	    {
