@@ -25,6 +25,14 @@ int main()
 		if(Aut.getMsg()!= "")
 		{	std::string result = bot.RunUnitTest(Aut.getMsg());	
 			Aut.setResultMsgPub(result);
+		 	if(Aut.getMsg() == "divide double 10 15 ")
+			{
+				Aut.setMsg("");
+				std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				Aut.m_stop = true;
+				break;
+			}
+		 
 			Aut.setMsg("");
 		}
 	}
