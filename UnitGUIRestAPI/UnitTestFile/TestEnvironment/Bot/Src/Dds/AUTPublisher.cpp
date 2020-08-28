@@ -256,7 +256,7 @@ public:
     {
 	//std::thread thread(&HelloWorldPublisher::runThread, this, samples, sleep_ms);
         uint32_t samples_sent = 0;
-        while (1)
+        while (!aut->m_stop)
         {
 	  if(aut->getResultMsgPub() != "")
 	  {
