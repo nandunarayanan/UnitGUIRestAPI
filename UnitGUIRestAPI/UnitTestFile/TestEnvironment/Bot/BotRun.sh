@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "======================Setting PWD========================"
-cd /home/pi/TestEnvironment/BOT/
+cd /home/pi/TestEnvironment/Bot/
 echo "=====================cmake operation===================="
 cmake CMakeLists.txt
 echo "=====================make operation====================="
