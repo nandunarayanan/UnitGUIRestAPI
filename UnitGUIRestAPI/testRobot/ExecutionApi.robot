@@ -8,4 +8,4 @@ Execute AUT_Exec from Target
     SSHLibrary.Open Connection    ${HOST}    port=${PORT}    timeout=30s 
     Login    ${USERNAME}    ${PASSWORD} 
     Execute Command    chmod 777 -R ${HALTestFolderPath} 
-    Execute Command    ${HALTestFolderPathApiExec}
+    Execute Command    ${HALTestFolderPathAutExec}
