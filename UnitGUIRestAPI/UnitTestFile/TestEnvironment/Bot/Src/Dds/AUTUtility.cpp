@@ -6,6 +6,7 @@ using namespace std;
 AUTUtility::AUTUtility(): m_msg("")
 			, m_Resultmsg("")
 			, messageCounter(0)
+	                , m_stop(false)
 {
 }
 
