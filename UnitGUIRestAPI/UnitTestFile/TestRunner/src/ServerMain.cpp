@@ -23,7 +23,8 @@ using namespace eprosima;
 using namespace fastrtps;
 using namespace rtps;
 
-ServerUtility s1;  
+ServerUtility s1;
+std::string filename = BotTestCase.csv
 
 /*
 TEST(AccountTest, BankAccountStartsEmpty) 
@@ -35,7 +36,7 @@ TEST(AccountTest, BankAccountStartsEmpty)
 
 TEST(CSV_Test, Example) 
 {  
-	s1.readCSV();
+	s1.readCSV(filename);
 	for(int ab = 0; ab < s1.words.size(); ab++) 
 	{
 		ASSERT_EQ(s1.words1[ab], s1.EvaluvateTestcase(s1.words[ab]));
@@ -82,7 +83,11 @@ INSTANTIATE_TEST_CASE_P(default, withdrawAccountTest,
 
 int main(int argc, char **argv) 
 {
-	/*****************/
+    if(1 == argc)
+    {
+		filename = argv[1];
+    }
+    /*****************/
     Poco::MD5Engine md5;
     Poco::DigestOutputStream ds(md5);
     ds << "abcdefghijklmnopqrstuvwxyz";
