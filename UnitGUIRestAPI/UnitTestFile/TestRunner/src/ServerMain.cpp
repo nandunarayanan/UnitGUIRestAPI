@@ -24,7 +24,7 @@ using namespace fastrtps;
 using namespace rtps;
 
 ServerUtility s1;
-std::string filename = BotTestCase.csv
+std::string filename = "BotTestCase.csv";
 
 /*
 TEST(AccountTest, BankAccountStartsEmpty) 
