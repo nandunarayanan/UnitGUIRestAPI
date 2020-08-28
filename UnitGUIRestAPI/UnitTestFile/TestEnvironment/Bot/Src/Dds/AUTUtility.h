@@ -8,7 +8,7 @@ class AUTUtility
   int messageCounter;
   
   public:
-    m_stop;
+    bool m_stop;
     std::string getMsg();    
     void setMsg(std::string msg);
     std::string getResultMsgPub();    
