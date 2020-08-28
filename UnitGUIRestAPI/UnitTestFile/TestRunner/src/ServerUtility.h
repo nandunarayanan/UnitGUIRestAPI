@@ -25,7 +25,7 @@ class ServerUtility
     string getMsgPublish();    
     void setMsgPublish(string msg);
     string EvaluvateTestcase(string msg);
-    void readCSV();
+    void readCSV(std::string filename);
     static bool getFileContent(std::string fileName, std::vector<std::string> & vecOfStrs);
 
     ServerUtility (): m_msgRecived("")
