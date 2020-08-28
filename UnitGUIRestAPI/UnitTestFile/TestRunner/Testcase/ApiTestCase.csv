@@ -1,0 +1,4 @@
+add,double,10,15,;25.000000
+subtract,double,10,15,;-5.000000
+multiply,double,10,15,;150.000000
+divide,double,10,15,;0.666667
