@@ -12,6 +12,6 @@ make
 echo "==============Execution of the Binary=================="
 ./Gtest_Exec BotTestCase.csv --gtest_output="xml:ReportFromLinuxGtestBot.xml"
 
-echo jenkins | sudo -S cp ReportFromLinuxGtestApi.xml ReportFromLinuxGtestBot.xml /var/lib/jenkins/workspace/UnitGUIRestfulAPI_Test/
+echo jenkins | sudo -S cp ReportFromLinuxGtestApi.xml /var/lib/jenkins/workspace/UnitGUIRestfulAPI_Test/
 
 echo "===============================Completed========================"
