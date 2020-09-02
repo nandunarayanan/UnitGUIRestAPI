@@ -34,6 +34,77 @@ TEST(AccountTest, BankAccountStartsEmpty)
 }
 */
 
+TEST(setPatientName, Example) 
+{   
+ ASSERT_EQ("Success", s1.EvaluvateTestcase("setPatientName void Bob "));  
+}
+TEST(getPatientName, Example) 
+{   
+ ASSERT_EQ("Bob", s1.EvaluvateTestcase("getPatientName string "));  
+}
+TEST(setAge, Example) 
+{   
+ ASSERT_EQ("Success", s1.EvaluvateTestcase("setAge void 25 "));  
+}
+TEST(getAge, Example) 
+{   
+ ASSERT_EQ("25", s1.EvaluvateTestcase("getAge long "));  
+}
+TEST(setGender, Example) 
+{   
+ ASSERT_EQ("Success", s1.EvaluvateTestcase("setGender void M "));  
+}
+TEST(getGender, Example) 
+{   
+ ASSERT_EQ("M", s1.EvaluvateTestcase("getGender char "));  
+}
+TEST(getBatteryPercentage1, Case1) 
+{   
+ ASSERT_EQ("Success", s1.EvaluvateTestcase("setBatteryPercentage void 75"));  
+}
+TEST(getBatteryPercentage2, Case2) 
+{   
+ ASSERT_EQ("75.000000", s1.EvaluvateTestcase("getBatteryPercentage double "));  
+}
+TEST(setBatteryPercentage1, Case1) 
+{   
+ ASSERT_EQ("Success", s1.EvaluvateTestcase("setBatteryPercentage void 65.65"));  
+}
+TEST(setBatteryPercentage2, Case2) 
+{   
+ ASSERT_EQ("65.650000", s1.EvaluvateTestcase("getBatteryPercentage double "));  
+}
+TEST(setBatteryStatus, Example) 
+{   
+ ASSERT_EQ("Success", s1.EvaluvateTestcase("setBatteryStatus void 0 "));  
+}
+TEST(getBatteryStatus, Example) 
+{   
+ ASSERT_EQ("0", s1.EvaluvateTestcase("getBatteryStatus int "));  
+}
+
+TEST(API_Add, Example) 
+{  	
+	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("add double 100 15"));		
+}
+
+TEST(API_Subtract, Example) 
+{  	
+	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("subtract double 130 15"));		
+}
+
+TEST(API_Mul, Example) 
+{  	
+	ASSERT_EQ("100.000000", s1.EvaluvateTestcase("multiply double 10 10"));		
+}
+
+TEST(API_Div, Example) 
+{  	
+	ASSERT_EQ("8.666667", s1.EvaluvateTestcase("divide double 130 15"));
+}
+
+
+
 TEST(CSV_Test, Example) 
 {  
 	s1.readCSV(filename);
