@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "======================Setting PWD========================"
-cd /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTestFile/TestRunner/src
+cd /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src
 
 echo "===============conan install operation=================="
 conan install ..
