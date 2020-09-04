@@ -6,7 +6,7 @@ PASSWORD =  'thereisnopassword'
 
 #Test path configurations
 HALTestFolderPath = '/home/pi/TestEnvironment'
-HALHostPath = '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTestFile/TestEnvironment'
+HALHostPath = '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestEnvironment'
 HALDeployPath = '/home/pi/'
 HALTestFolderPathAutExec = '/home/pi/TestEnvironment/AUTRunner/AUTRun.sh'
 HALTestFolderPathBotExec = '/home/pi/TestEnvironment/Bot/BotRun.sh'
