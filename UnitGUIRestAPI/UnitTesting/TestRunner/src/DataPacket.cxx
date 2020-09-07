@@ -32,6 +32,9 @@ using namespace eprosima::fastcdr::exception;
 
 #include <utility>
 
+/*!
+ * @brief Default constructor.
+ */
 DataPacket::DataPacket()
 {
     // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@267ef4
@@ -41,24 +44,37 @@ DataPacket::DataPacket()
 
 }
 
+/*!
+ * @brief Default destructor.
+ */
 DataPacket::~DataPacket()
 {
-
-
 }
 
+/*!
+ * @brief Copy constructor.
+ * @param x Reference to the object DataPacket that will be copied.
+ */
 DataPacket::DataPacket(const DataPacket &x)
 {
     m_index = x.m_index;
     m_message = x.m_message;
 }
 
+/*!
+ * @brief Move constructor.
+ * @param x Reference to the object DataPacket that will be copied.
+ */
 DataPacket::DataPacket(DataPacket &&x)
 {
     m_index = x.m_index;
     m_message = std::move(x.m_message);
 }
 
+/*!
+ * @brief Copy assignment.
+ * @param x Reference to the object DataPacket that will be copied.
+ */
 DataPacket& DataPacket::operator=(const DataPacket &x)
 {
 
@@ -68,6 +84,10 @@ DataPacket& DataPacket::operator=(const DataPacket &x)
     return *this;
 }
 
+/*!
+ * @brief Move assignment.
+ * @param x Reference to the object DataPacket that will be copied.
+ */
 DataPacket& DataPacket::operator=(DataPacket &&x)
 {
 
@@ -77,6 +97,12 @@ DataPacket& DataPacket::operator=(DataPacket &&x)
     return *this;
 }
 
+/*!
+ * @brief This function returns the maximum serialized size of an object
+ * depending on the buffer alignment.
+ * @param current_alignment Buffer alignment.
+ * @return Maximum serialized size.
+ */
 size_t DataPacket::getMaxCdrSerializedSize(size_t current_alignment)
 {
     size_t initial_alignment = current_alignment;
@@ -91,6 +117,12 @@ size_t DataPacket::getMaxCdrSerializedSize(size_t current_alignment)
     return current_alignment - initial_alignment;
 }
 
+/*!
+ * @brief This function returns the serialized size of a data depending on the buffer alignment.
+ * @param data Data which is calculated its serialized size.
+ * @param current_alignment Buffer alignment.
+ * @return Serialized size.
+ */
 size_t DataPacket::getCdrSerializedSize(const DataPacket& data, size_t current_alignment)
 {
     (void)data;
@@ -106,6 +138,10 @@ size_t DataPacket::getCdrSerializedSize(const DataPacket& data, size_t current_a
     return current_alignment - initial_alignment;
 }
 
+/*!
+ * @brief This function serializes an object using CDR serialization.
+ * @param cdr CDR serialization object.
+ */
 void DataPacket::serialize(eprosima::fastcdr::Cdr &scdr) const
 {
 
@@ -113,6 +149,10 @@ void DataPacket::serialize(eprosima::fastcdr::Cdr &scdr) const
     scdr << m_message;
 }
 
+/*!
+ * @brief This function deserializes an object using CDR serialization.
+ * @param cdr CDR serialization object.
+ */
 void DataPacket::deserialize(eprosima::fastcdr::Cdr &dcdr)
 {
 
@@ -183,22 +223,30 @@ std::string& DataPacket::message()
     return m_message;
 }
 
+/*!
+ * @brief This function returns the maximum serialized size of the Key of an object
+ * depending on the buffer alignment.
+ * @param current_alignment Buffer alignment.
+ * @return Maximum serialized size.
+ */
 size_t DataPacket::getKeyMaxCdrSerializedSize(size_t current_alignment)
 {
     size_t current_align = current_alignment;
-
-
-
-
-
     return current_align;
 }
 
+/*!
+ * @brief This function tells you if the Key has been defined for this type
+ */
 bool DataPacket::isKeyDefined()
 {
    return false;
 }
 
+/*!
+ * @brief This function serializes the key members of an object using CDR serialization.
+ * @param cdr CDR serialization object.
+ */
 void DataPacket::serializeKey(eprosima::fastcdr::Cdr &scdr) const
 {
     (void) scdr;
