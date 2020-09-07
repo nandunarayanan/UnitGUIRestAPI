@@ -39,7 +39,7 @@ function main()
     for (var row = 0; row < data.length; ++row)
         addNameAndAddress(data[row]);
 
-    //test.compare(table.rowCount, data.length, "table contains as many rows as added data");
+    test.compare(table.rowCount, data.length, "table contains as many rows as added data");
     closeWithoutSaving();
 }
 
