@@ -1,6 +1,7 @@
 #! /bin/bash
 
 echo "======================Setting PWD========================"
+echo jenkins | sudo -S ls
 cd /home/bastin/squish-for-web-6.6.1/bin
 export SQUISH_LICENSEKEY_DIR="/home/bastin"
 echo "==============Running Desktop API Application================"
