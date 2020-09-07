@@ -34,19 +34,19 @@ TEST(AccountTest, BankAccountStartsEmpty)
 }
 */
 
-TEST(setPatientName, Example) 
+TEST(setPatientName, setPatientName) 
 {   
  ASSERT_EQ("Success", s1.EvaluvateTestcase("setPatientName void Bob "));  
 }
-TEST(getPatientName, Example) 
+TEST(getPatientName, getPatientName) 
 {   
  ASSERT_EQ("Bob", s1.EvaluvateTestcase("getPatientName string "));  
 }
-TEST(setAge, Example) 
+TEST(setAge, setAge) 
 {   
  ASSERT_EQ("Success", s1.EvaluvateTestcase("setAge void 25 "));  
 }
-TEST(getAge, Example) 
+TEST(getAge, getAge) 
 {   
  ASSERT_EQ("25", s1.EvaluvateTestcase("getAge long "));  
 }
@@ -58,23 +58,23 @@ TEST(getGender, Example)
 {   
  ASSERT_EQ("M", s1.EvaluvateTestcase("getGender char "));  
 }
-TEST(getBatteryPercentage1, Case1) 
+TEST(setBatteryPercentage75, setBatteryPercentage75) 
 {   
  ASSERT_EQ("Success", s1.EvaluvateTestcase("setBatteryPercentage void 75"));  
 }
-TEST(getBatteryPercentage2, Case2) 
+TEST(getBatteryPercentage75, getBatteryPercentage75) 
 {   
  ASSERT_EQ("75.000000", s1.EvaluvateTestcase("getBatteryPercentage double "));  
 }
-TEST(setBatteryPercentage1, Case1) 
+TEST(setBatteryPercentage65, setBatteryPercentage65) 
 {   
  ASSERT_EQ("Success", s1.EvaluvateTestcase("setBatteryPercentage void 65.65"));  
 }
-TEST(setBatteryPercentage2, Case2) 
+TEST(getBatteryPercentage65, getBatteryPercentage65) 
 {   
  ASSERT_EQ("65.650000", s1.EvaluvateTestcase("getBatteryPercentage double "));  
 }
-TEST(setBatteryStatus, Example) 
+TEST(setBatteryStatus, setBatteryStatus) 
 {   
  ASSERT_EQ("Success", s1.EvaluvateTestcase("setBatteryStatus void 0 "));  
 }
@@ -83,29 +83,29 @@ TEST(getBatteryStatus, Example)
  ASSERT_EQ("0", s1.EvaluvateTestcase("getBatteryStatus int "));  
 }
 
-TEST(API_Add, Example) 
+TEST(API_Add, API_Add) 
 {  	
 	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("add double 100 15"));		
 }
 
-TEST(API_Subtract, Example) 
+TEST(API_Subtract, API_Subtract) 
 {  	
 	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("subtract double 130 15"));		
 }
 
-TEST(API_Mul, Example) 
+TEST(API_Mul, API_Mul) 
 {  	
 	ASSERT_EQ("100.000000", s1.EvaluvateTestcase("multiply double 10 10"));		
 }
 
-TEST(API_Div, Example) 
+TEST(API_Div, API_Div) 
 {  	
 	ASSERT_EQ("8.666667", s1.EvaluvateTestcase("divide double 130 15"));
 }
 
 
 
-TEST(CSV_Test, Example) 
+TEST(CSV_Test, CSV_Test) 
 {  
 	s1.readCSV(filename);
 	for(int ab = 0; ab < s1.words.size(); ab++) 
