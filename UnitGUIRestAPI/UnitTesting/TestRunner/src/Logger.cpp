@@ -40,7 +40,10 @@ Logger* Logger::m_Instance = 0;
 
 // Log file name. File name should be change from here only
 const string logFileName = "MyLogFile.log";
-
+    
+/*!
+ * @brief Default Constructor
+ */
 Logger::Logger()
 {
    m_File.open(logFileName.c_str(), ios::out|ios::app);
@@ -67,6 +70,9 @@ Logger::Logger()
 #endif
 }
 
+/*!
+ * @brief Default Desctructor
+ */
 Logger::~Logger()
 {
    m_File.close();
@@ -77,7 +83,11 @@ Logger::~Logger()
    pthread_mutex_destroy(&m_Mutex);
 #endif
 }
-
+   
+/*!
+ * @brief This function returns a reference Logger instance
+ * @return Reference to Logger object
+ */
 Logger* Logger::getInstance() throw ()
 {
    if (m_Instance == 0) 
@@ -87,6 +97,9 @@ Logger* Logger::getInstance() throw ()
    return m_Instance;
 }
 
+/*!
+ * @brief Wrapper function for lock
+ */
 void Logger::lock()
 {
 #ifdef WIN32
@@ -96,6 +109,9 @@ void Logger::lock()
 #endif
 }
 
+/*!
+ * @brief Wrapper function for unlock
+ */
 void Logger::unlock()
 {
 #ifdef WIN32
@@ -105,6 +121,9 @@ void Logger::unlock()
 #endif
 }
 
+/*!
+ * @brief This function is the Interface to log into File
+ */
 void Logger::logIntoFile(std::string& data)
 {
    lock();
@@ -112,11 +131,17 @@ void Logger::logIntoFile(std::string& data)
    unlock();
 }
 
+/*!
+ * @brief This function is the Interface to log into Console
+ */
 void Logger::logOnConsole(std::string& data)
 {
    std::cout << getCurrentTime() << "  " << data << std::endl;
 }
 
+/*!
+ * @brief function to get the current time
+ */
 string Logger::getCurrentTime()
 {
    string currTime;
@@ -130,14 +155,17 @@ string Logger::getCurrentTime()
    return currentTime;
 }
 
-// Interface for Error Log
+/*!
+ * @brief This function is the Interface for Error Log 
+ * @param text to be printed as error
+ */ 
 void Logger::error(const char* text) throw()
 {
    string data;
    data.append("[ERROR]: ");
    data.append(text);
 
-   // ERROR must be capture
+   // ERROR must be captured always
    if(m_LogType == FILE_LOG)
    {
       logIntoFile(data);
@@ -148,19 +176,29 @@ void Logger::error(const char* text) throw()
    }
 }
 
+/*!
+ * @brief This function is the Interface for Error Log 
+ * @param text to be printed as error
+ */ 
 void Logger::error(const std::string& text) throw()
 {
    error(text.data());
 }
 
+/*!
+ * @brief This function is the Interface for Error Log 
+ * @param text to be printed as error
+ */ 
 void Logger::error(std::ostringstream& stream) throw()
 {
    string text = stream.str();
    error(text.data());
 }
 
-
-// Interface for Buffer Log 
+/*!
+ * @brief This function is the Interface for Warning Log 
+ * @param text to be printed as Warning
+ */ 
 void Logger::warn(const char* text) throw()
 {
    // Buffer is the special case. So don't add log level
@@ -177,18 +215,29 @@ void Logger::warn(const char* text) throw()
    }
 }
 
+/*!
+ * @brief This function is the Interface for Warning Log 
+ * @param text to be printed as Warning
+ */ 
 void Logger::warn(const std::string& text) throw()
 {
    warn(text.data());
 }
 
+/*!
+ * @brief This function is the Interface for Warning Log 
+ * @param text to be printed as Warning
+ */ 
 void Logger::warn(std::ostringstream& stream) throw()
 {
    string text = stream.str();
    warn(text.data());
 }
 
-// Interface for Info Log
+/*!
+ * @brief This function is the Interface for Info Log 
+ * @param text to be printed as Info
+ */ 
 void Logger::info(const char* text) throw()
 {
    string data;
@@ -205,19 +254,29 @@ void Logger::info(const char* text) throw()
    }
 }
 
+/*!
+ * @brief This function is the Interface for Info Log 
+ * @param text to be printed as Info
+ */
 void Logger::info(const std::string& text) throw()
 {
    info(text.data());
 }
 
+/*!
+ * @brief This function is the Interface for Info Log 
+ * @param text to be printed as Info
+ */
 void Logger::info(std::ostringstream& stream) throw()
 {
    string text = stream.str();
    info(text.data());
 }
 
-
-// Interface for Debug Log
+/*!
+ * @brief This function is the Interface for Debug Log 
+ * @param text to be printed as Debug
+ */
 void Logger::debug(const char* text) throw()
 {
    string data;
@@ -234,46 +293,69 @@ void Logger::debug(const char* text) throw()
    }
 }
 
+/*!
+ * @brief This function is the Interface for Debug Log 
+ * @param text to be printed as Debug
+ */
 void Logger::debug(const std::string& text) throw()
 {
    debug(text.data());
 }
 
+/*!
+ * @brief This function is the Interface for Debug Log 
+ * @param text to be printed as Debug
+ */
 void Logger::debug(std::ostringstream& stream) throw()
 {
    string text = stream.str();
    debug(text.data());
 }
 
-// Interfaces to control log levels
+/*!
+ * @brief This function is the Interfaces to control log levels. All the levels above the parameter passed will be enabled
+ * @param logLevel is considered as minimum level to be enabled
+ */
 void Logger::updateLogLevel(LogLevel logLevel)
 {
    m_LogLevel = logLevel;
 }
 
-// Enable all log levels
+/*!
+ * @brief This function is the Interfaces to Enable all log levels
+ */
 void Logger::enaleLog()
 {
    m_LogLevel = ENABLE_LOG; 
 }
 
-// Disable all log levels, except error and alarm
+/*!
+ * @brief This function is the Interfaces to Disable all log levels, except error
+ */
 void Logger:: disableLog()
 {
    m_LogLevel = DISABLE_LOG;
 }
 
-// Interfaces to control log Types
+/*!
+ * @brief This function is the Interface to enable Console or File Logging
+ * @param logType parameter which need to be enabled as logtype
+ */
 void Logger::updateLogType(LogType logType)
 {
    m_LogType = logType;
 }
-
+/*!
+ * @brief This function is the Interface to enable Console Logging
+ */
 void Logger::enableConsoleLogging()
 {
    m_LogType = CONSOLE; 
 }
 
+/*!
+ * @brief This function is the Interface to enable File Logging
+ */
 void Logger::enableFileLogging()
 {
    m_LogType = FILE_LOG ;
