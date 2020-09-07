@@ -3,7 +3,7 @@
 echo "======================Setting PWD========================"
 cd /home/bastin/squish-for-web-6.6.1/bin
 export SQUISH_LICENSEKEY_DIR="/home/bastin"
-echo "==============Running REST API Application================"
+echo "==============Running Desktop API Application================"
 ./squishrunner --host localhost --port 4322 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/DesktopGUITesting/suite_js --reportgen xmljunit,results_Desktop.xml
 
 echo "=================Copying the generated file to the workspace=============="
