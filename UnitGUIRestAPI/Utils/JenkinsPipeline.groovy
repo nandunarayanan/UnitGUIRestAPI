@@ -3,41 +3,37 @@ pipeline
     agent any
     stages 
 	{
-        stage('Build Trigger [SCM poll]') 
+		/*Waiting for project github event*/
+		stage('Build Trigger [SCM poll]') 
 		{
-            
-            steps 
+		    
+			steps 
 			{
-                echo "********Waiting for SCM event - IN PROGRESS***********"
-                
-                script 
+				echo "********Waiting for SCM event - IN PROGRESS***********"
+
+				script 
 				{
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
-                }
-                echo "Waiting for SCM event - Done"
-                //define scm connection for polling
-                git branch: 'master', credentialsId: 'nandu', url: 'https://github.com/nandunarayanan/UnitGUIRestAPI.git'
-                
-            
+				    properties([pipelineTriggers([pollSCM('* * * * *')])])
+				}
+				echo "Waiting for SCM event - Done"
+				git branch: 'master', credentialsId: 'nandu', url: 'https://github.com/nandunarayanan/UnitGUIRestAPI.git'
 				echo "Testing for SCM event - Done"
 			}
 		}   
-        
-        stage('Checkout')
+        	/*Checkout the test runner and test environment artifacts*/
+		stage('Checkout')
 		{
-            steps 
+			steps 
 			{
 				echo "************Checkout SCM repository to the Host server - IN PROGRESS***********"
 				sh label: '', script: '/home/bastin/JenkinsCmd/gitPull.sh'
 				echo  "************Checkout SCM repository to the Host server - DONE ****************"
 			}
 		}
-            
-         
-            
-        stage('Build Management Execution')
+		/*Test automation and Product build chaining*/
+		stage('Test automation and Product build chaining')
 		{
-            steps 
+			steps 
 			{
 				echo "************Building the Test Runner files- IN PROGRESS ************"
 				
@@ -48,21 +44,19 @@ pipeline
 				echo "************Building the Test Environment files- Done ************"
 			}
 		}  
-            
-            
-               
-        stage('Deployment to Test Runner/Environment')
+		/*Deployment*/               
+		stage('Deployment to Test Runner/Environment')
 		{
-            steps 
+			steps 
 			{
-				echo "************Deployment to Test Environment - IN PROGRESS ************"
+				echo "************Deployment to Test Environment & Test Runner - IN PROGRESS ************"
 				
 				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/Deployment/FileTransfer.sh'
 				
-				echo "************Deployment to Test Environment - DONE************"
+				echo "************Deployment to Test Environment & Test Runner - DONE************"
 			}
 		}
-            
+            	/*Static code analyzing of AUT*/
 		stage('Sonarqube-AUT Static Code Analysing')
 		{
 			steps 
@@ -75,7 +69,7 @@ pipeline
 			}
 		}
             
-		stage('Execution [class Level]')
+		stage('AUT-Unit test execution [class Level]')
 		{
 			steps 
 			{
@@ -104,8 +98,8 @@ pipeline
 				})
 			}
 		}
-            
-		stage('Sonarqube- Class Level Testing Coverage')
+            	/*Test coverage*/
+		stage('Sonarqube- AUT Class Level Test Coverage')
 		{
 			steps 
 			{
@@ -114,8 +108,8 @@ pipeline
 				echo "************Sonarqube Coverage Reporting- DONE************"
 			}
 		}
-            
-		stage('Execution  [API]')
+            	/*Component level testing*/
+		stage('AUT-Component test execution [API level]')
 		{
 			steps 
 			{
@@ -145,8 +139,8 @@ pipeline
 			}
 		}
             
-            
-		stage('Sonarqube- API Level Testing Coverage')
+            	/*Test coverage*/
+		stage('Sonarqube- AUT API Level Test Coverage')
 		{
 			steps 
 			{
@@ -156,10 +150,10 @@ pipeline
 			}
 		}
             
-            
-		stage('Execution [Squish Desktop]')
+            	/*Desktop GUI testing*/
+		stage('Desktop AUT- GUI Testing [Squish]')
 		{
-            steps 
+			steps 
 			{
 				echo "************Squish Desktop from the [Host Server] - IN PROGRESS************"
 				//squish([host: 'proxy60.rt3.io', port: '30791', squishPackageName: 'Default', testSuite: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/GUITesting/suite_gwt1'])
@@ -167,21 +161,20 @@ pipeline
 				echo "************Squish Desktop from the [Host Server] - DONE************"
 			}
 		}
-            
-		stage('Sonarqube- Desktop GUI Testing Coverage')
+            	/*Test coverage*/
+		stage('Sonarqube- Desktop GUI Test Coverage')
 		{
-            steps 
+			steps 
 			{
 				echo "************Sonarqube Coverage Reporting - IN PROGRESS************"
 				//squish([host: 'proxy60.rt3.io', port: '36113', squishPackageName: 'Default', testSuite: 'home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/TestSuite/suite_Ex_bdd_suite2'])
 				echo "************Sonarqube Coverage Reporting- DONE************"
 			}
 		}
-            
-            
-		stage('Execution [Squish Web]')
+            	/*Web application GUI testing*/
+		stage('Web AUT- GUI Testing [Squish]')
 		{
-            steps 
+			steps 
 			{
 				echo "************Squish from the [Host Server] - IN PROGRESS************"
 				//squish([host: 'proxy60.rt3.io', port: '30791', squishPackageName: 'Default', testSuite: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/GUITesting/suite_gwt1'])
@@ -194,19 +187,18 @@ pipeline
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
-            
-            
-		stage('Sonarqube- Web GUI Testing Coverage')
+		/*Test coverage*/	
+		stage('Sonarqube- Web GUI Test Coverage')
 		{
-            steps 
+			steps 
 			{
 				echo "************Sonarqube Coverage Reporting - IN PROGRESS************"
 				//squish([host: 'proxy60.rt3.io', port: '36113', squishPackageName: 'Default', testSuite: 'home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/TestSuite/suite_Ex_bdd_suite2'])
 				echo "************Sonarqube Coverage Reporting- DONE************"
 			}
 		}
-            
-		stage('Execution [Squish Restful API]')
+		/*Web application rest api testing*/            
+		stage('Web AUT- Restful API Testing [Squish]')
 		{
 			steps 
 			{
@@ -215,10 +207,10 @@ pipeline
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
-            
-		stage('Sonarqube- Restful API Testing Coverage')
+            	/*test coverage*/
+		stage('Sonarqube- Restful API Test Coverage')
 		{
-            steps 
+			steps 
 			{
 				echo "************Sonarqube Coverage Reporting - IN PROGRESS************"
 				//squish([host: 'proxy60.rt3.io', port: '36113', squishPackageName: 'Default', testSuite: 'home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/TestSuite/suite_Ex_bdd_suite2'])
@@ -226,15 +218,15 @@ pipeline
 			}
 		}
             
-    }
+    	}/*End of stages*/
         
 	post 
 	{
 		always 
 		{
-			echo "************Publishing Google test result from child node1 - IN PROGRESS************"
+			echo "************Publishing xUnit result  - IN PROGRESS************"
 			xunit([GoogleTest(deleteOutputFiles: true, failIfNotNew: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
-			echo "************Publishing Google test result from child node1 - Done************"
+			echo "************Publishing xUnit result from child node1 - Done************"
 		}
 	}
 }
