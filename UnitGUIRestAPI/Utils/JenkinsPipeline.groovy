@@ -37,7 +37,7 @@ pipeline
 			{
 				echo "************Building the Test Runner files- IN PROGRESS ************"
 				
-				//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/Deployment/FileTransfer.sh'
+				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/Build.sh'
 				
 				echo "************Building the Test Runner files - DONE************"
 				echo "************Building the Test Environment files- IN PROGRESS ************"
@@ -156,8 +156,7 @@ pipeline
 			steps 
 			{
 				echo "************Squish Desktop from the [Host Server] - IN PROGRESS************"
-				//squish([host: 'proxy60.rt3.io', port: '30791', squishPackageName: 'Default', testSuite: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/GUITesting/suite_gwt1'])
-				squish([host: 'localhost', port: '4322', squishPackageName: 'Squish_QT', testSuite: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/DesktopGUI/suite_js'])
+				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/DesktopGUITesting/squishDesktopRun.sh'
 				echo "************Squish Desktop from the [Host Server] - DONE************"
 			}
 		}
@@ -177,13 +176,7 @@ pipeline
 			steps 
 			{
 				echo "************Squish from the [Host Server] - IN PROGRESS************"
-				//squish([host: 'proxy60.rt3.io', port: '30791', squishPackageName: 'Default', testSuite: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/GUITesting/suite_gwt1'])
-				squish([host: 'proxy60.rt3.io', port: '36113', resultFolder: '/var/lib/jenkins/workspace/UnitGUIRestfulAPI_Test/squish_junit', squishPackageName: 'Default', testSuite: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/GUITesting/suite_gwt1'])
-				/*
-				archiveArtifacts artifacts: '/UnitGUIRestfulAPI_Test/squish_junit/*.xml', followSymlinks: false
-				step([$class: 'ACIPluginPublisher', name: '/var/lib/jenkins/workspace/UnitGUIRestfulAPI_Test/squish_junit/*.xml', shownOnProjectPage: false])
-				//squish([squishPackageName: 'Default', testSuite: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/GUITesting/suite_gwt1'])
-				*/
+				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/WebGUITesting/SquishWebRun.sh'
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
@@ -203,7 +196,7 @@ pipeline
 			steps 
 			{
 				echo "************Squish from the [Host Server] - IN PROGRESS************"
-				squish([host: 'proxy60.rt3.io', port: '36113', squishPackageName: 'Default', testSuite: 'home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/TestSuite/suite_Ex_bdd_suite2'])
+				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/SquishRun.sh'
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
@@ -227,6 +220,10 @@ pipeline
 			echo "************Publishing xUnit result  - IN PROGRESS************"
 			xunit([GoogleTest(deleteOutputFiles: true, failIfNotNew: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
 			echo "************Publishing xUnit result from child node1 - Done************"
+			
+			echo "************Publishing Squish test result - IN PROGRESS************"
+			step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1, thresholds: [], tools: [JUnit(deleteOutputFiles: true, failIfNotNew: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)]])
+			echo "************Publishing Squish test result - Done************"
 		}
 	}
 }
