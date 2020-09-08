@@ -1,4 +1,10 @@
 
+/*!
+ * @file ServerMain.cpp
+ * This source file contains the testcases and main function.
+ *
+ */
+
 #include <iostream>
 #include <thread>
 
@@ -9,7 +15,6 @@
 
 #include <fastrtps/Domain.h>
 #include <fastrtps/log/Log.h>
-
 
 #include "optionparser.h"
 #include "Logger.h"
@@ -26,14 +31,9 @@ using namespace rtps;
 ServerUtility s1;
 std::string filename = "BotTestCase.csv";
 
-/*
-TEST(AccountTest, BankAccountStartsEmpty) 
-{	
-	EXPECT_EQ("Sucess", s1.EvaluvateTestcase("SetBalanceBankAccount void 1000"));
-	EXPECT_EQ("1000", s1.EvaluvateTestcase("GetBalanceBankAccount int"));
-}
-*/
-
+/*!
+ * @brief Test cases for direct execution.
+ */
 TEST(setPatientName, setPatientName) 
 {   
  ASSERT_EQ("Success", s1.EvaluvateTestcase("setPatientName void Bob "));  
@@ -83,6 +83,9 @@ TEST(getBatteryStatus, Example)
  ASSERT_EQ("0", s1.EvaluvateTestcase("getBatteryStatus int "));  
 }
 
+/*!
+ * @brief Test cases for API execution.
+ */
 TEST(API_Add, API_Add) 
 {  	
 	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("add double 100 15"));		
@@ -104,7 +107,9 @@ TEST(API_Div, API_Div)
 }
 
 
-
+/*!
+ * @brief Test cases for CSV test cases.
+ */
 TEST(CSV_Test, CSV_Test) 
 {  
 	s1.readCSV(filename);
@@ -112,46 +117,11 @@ TEST(CSV_Test, CSV_Test)
 	{
 		ASSERT_EQ(s1.words1[ab], s1.EvaluvateTestcase(s1.words[ab]));
 	}
-	
-	
 }
 
-/*
-class AccountState
-{
-public:
-	std::string intitialBalance;
-	std::string withdrawAmount;
-	std::string FinalBalance;
-	std::string success;
-};
-
-class withdrawAccountTest : public testing::WithParamInterface<AccountState>, public testing::Test
-{
-public:
-	withdrawAccountTest()
-	{
-		s1.EvaluvateTestcase("SetBalanceBankAccount void "+ GetParam().intitialBalance);
-	}
-};
-
-TEST_P(withdrawAccountTest, FinalBalance)
-{
-	auto as = GetParam();
-	auto success = s1.EvaluvateTestcase("WithdrawMoneyBankAccount bool "+as.withdrawAmount);
-	EXPECT_EQ(as.FinalBalance, s1.EvaluvateTestcase("GetBalanceBankAccount int"));
-	EXPECT_EQ(as.success, success);
-}
-
-INSTANTIATE_TEST_CASE_P(default, withdrawAccountTest,
-	testing::Values(
-		AccountState{ "100","50","50","1" },
-		AccountState{ "100", "200", "100", "0" }
-	)
-);
-*/
-
-
+/*!
+ * @brief Main function.
+ */
 int main(int argc, char **argv) 
 {
     if(1 == argc)
@@ -163,21 +133,19 @@ int main(int argc, char **argv)
     Poco::DigestOutputStream ds(md5);
     ds << "abcdefghijklmnopqrstuvwxyz";
     ds.close();
-    //std::cout << Poco::DigestEngine::digestToHex(md5.digest()) << std::endl;
     for(const char & line : md5.digest())        
-        {
-        	std::cout << (int(line)) <<std::endl;
-        }
-    //md5.digest();
+    {
+	    std::cout << (int(line)) <<std::endl;
+    }
     /************/
-  std::thread t1(SubscriberMain, &s1);  
-  std::thread t2(PublisherMain, &s1);	
+    std::thread t1(SubscriberMain, &s1);  
+    std::thread t2(PublisherMain, &s1);	
     LOG_DEBUG("B4 T1 join:");
-    
+
     testing::InitGoogleTest(&argc, argv);
     LOG_INFO("B4 Return all test;");
     //return RUN_ALL_TESTS();
-	RUN_ALL_TESTS();
+    RUN_ALL_TESTS();
 
     LOG_INFO("B4 threads are joined");
     s1.setStopMain(true);
@@ -186,5 +154,5 @@ int main(int argc, char **argv)
     t2.join();		
     LOG_DEBUG("Ending the main");
 
-  return 0;
+    return 0;
 }
