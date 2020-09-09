@@ -38,7 +38,7 @@ public class AppTest
         assertEquals("Pass", App.getMessage());
     }
     
-    
+    /*
     @Test
     public void testAppFail()
     {
@@ -47,6 +47,7 @@ public class AppTest
         App.main(chk);
         assertEquals("Fail", App.getMessage());
     }
+    */
     @After
     public void cleanUpStreams() {
         System.setOut(null);

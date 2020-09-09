@@ -65,21 +65,17 @@ pipeline
 			steps 
 			{
 				echo "************Sonarqube-AUT Static Code Analysing - IN PROGRESS ************"
-				
+				 sh 'mvn -B clean package'
+				 sh 'mvn test'
 				withSonarQubeEnv(installationName: 'SonarQube') 
             	{ 
                   sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
                 }
 				
-				
 				timeout(time: 1, unit: 'HOURS') 
 				{
 					waitForQualityGate abortPipeline: true
 				}
-				
-				sh 'mvn -B clean package'
-				
-				sh 'mvn test'
 				
 				echo "************Sonarqube-AUT Static Code Analysing - DONE************"
 			}
