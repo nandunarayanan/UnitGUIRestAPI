@@ -16,8 +16,7 @@ public class App
     	
     	if(test.equals("Pass"))
     	{
-    		/*test = "Pass";*/
-    		System.out.println("Fail");
+    		test = "Pass";
     	}
     	else    	
     	{
