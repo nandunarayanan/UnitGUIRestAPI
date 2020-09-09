@@ -13,9 +13,20 @@ public class App
 
     public App() {}
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
+    	String test = "test";
+    	if(test.equals("Pass"))
+    	{
+    		test = "Pass";
+    	}
+    	else
+    	{
+    		test = "Fail";
+    	}
+    	
     	Logger logger = Logger.getLogger(App.class.getName());
-    	logger.log(Level.INFO, new App().getMessage());
+    	logger.log(Level.INFO, new App().getMessage()+test);
     }
 
     private final String getMessage() {
