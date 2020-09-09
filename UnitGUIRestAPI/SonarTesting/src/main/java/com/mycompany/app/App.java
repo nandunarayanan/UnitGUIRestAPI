@@ -1,3 +1,6 @@
+import java.util.logging.Level; 
+import java.util.logging.Logger; 
+
 package com.mycompany.app;
 
 /**
@@ -11,8 +14,8 @@ public class App
     public App() {}
 
     public static void main(String[] args) {
-    	
-        System.out.println(new App().getMessage());
+    	Logger logger = Logger.getLogger(App.class.getName());
+    	logger.log(Level.INFO, new App().getMessage());
     }
 
     private final String getMessage() {
