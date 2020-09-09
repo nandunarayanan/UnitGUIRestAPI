@@ -30,16 +30,23 @@ public class AppTest
     }
 
     @Test
-    public void testAppMain()
+    public void testAppPass()
     {
-        App.main(null);
-        try {
-            assertEquals("Hello World!" + System.getProperty("line.separator"), outContent.toString());
-        } catch (AssertionError e) {
-            fail("\"message\" is not \"Hello World!\"");
-        }
+    	String chk[] = {"Pass"};
+    	
+        App.main(chk);
+        assertEquals("Pass", App.getMessage());
     }
-
+    
+    
+    @Test
+    public void testAppFail()
+    {
+    	String chk[] = {"Fail"};
+    	
+        App.main(chk);
+        assertEquals("Fail", App.getMessage());
+    }
     @After
     public void cleanUpStreams() {
         System.setOut(null);

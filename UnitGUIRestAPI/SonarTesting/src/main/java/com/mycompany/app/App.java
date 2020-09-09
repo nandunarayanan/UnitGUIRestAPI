@@ -1,22 +1,33 @@
 package com.mycompany.app;
 
-import java.util.logging.Level; 
-import java.util.logging.Logger; 
-
 /**
  * Hello world!
  */
 public class App
 {
 
-    private final String message = "Hello World!";
+    private static String MESSAGE = "Hello World!";
 
-    public App() {}
+    public App() 
+    {
+    	//Do nothing
+    }
 
     public static void main(String[] args) 
     {
-    	String test = "test";
-    	if(test.equals("Pass"))
+    
+      String Test = "";
+    	if(args == null)
+    	{
+    	   Test = "Pass";
+    	}
+    	else
+    	{
+    	  Test = args[0];
+    	}
+    	
+    	String test = "";
+    	if(Test.equals("Pass"))
     	{
     		test = "Pass";
     	}
@@ -24,13 +35,11 @@ public class App
     	{
     		test = "Fail";
     	}
-    	
-    	Logger logger = Logger.getLogger(App.class.getName());
-    	logger.log(Level.INFO, new App().getMessage()+test);
+    	MESSAGE = test;
     }
 
-    private final String getMessage() {
-        return message;
+    public static String getMessage() {
+        return MESSAGE;
     }
 
 }

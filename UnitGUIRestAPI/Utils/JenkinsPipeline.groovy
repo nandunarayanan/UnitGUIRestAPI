@@ -53,6 +53,9 @@ pipeline
 				
 				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/Deployment/FileTransfer.sh'
 				
+				sh label: '', script: '''cd  /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/SonarTesting/
+                                    echo jenkins | sudo -S cp -R  ./* /var/lib/jenkins/workspace/UnitGUIRestfulAPI_Test/'''
+				
 				echo "************Deployment to Test Environment & Test Runner - DONE************"
 			}
 		}
@@ -63,7 +66,20 @@ pipeline
 			{
 				echo "************Sonarqube-AUT Static Code Analysing - IN PROGRESS ************"
 				
-				//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/Deployment/FileTransfer.sh'
+				withSonarQubeEnv(installationName: 'SonarQube') 
+            	{ 
+                  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                }
+				
+				
+				timeout(time: 1, unit: 'HOURS') 
+				{
+					waitForQualityGate abortPipeline: true
+				}
+				
+				sh 'mvn -B clean package'
+				
+				sh 'mvn test'
 				
 				echo "************Sonarqube-AUT Static Code Analysing - DONE************"
 			}
@@ -224,6 +240,10 @@ pipeline
 			echo "************Publishing Squish test result - IN PROGRESS************"
 			step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1, thresholds: [], tools: [JUnit(deleteOutputFiles: true, failIfNotNew: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)]])
 			echo "************Publishing Squish test result - Done************"
+			
+			echo "************Publishing Squish test result - IN PROGRESS************"
+			junit 'target/surefire-reports/*.xml'
+			echo "************Publishing SonarQube test result - IN PROGRESS************"
 		}
 	}
 }
