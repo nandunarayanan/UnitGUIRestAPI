@@ -11,19 +11,8 @@ public class App
     public App() {}
 
     public static void main(String[] args) {
-    	String test = "Pass";
     	
-    	
-    	if(test.equals("Pass"))
-    	{
-    		test = "Pass";
-    	}
-    	else    	
-    	{
-    		test = "Fail";
-    	}
-    	
-        System.out.println(new App().getMessage()+test);
+        System.out.println(new App().getMessage());
     }
 
     private final String getMessage() {
