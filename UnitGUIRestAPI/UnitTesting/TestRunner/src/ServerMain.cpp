@@ -94,7 +94,7 @@ TEST(API_PatientAdd, API_PatientAdd)
 
 TEST(API_PatientRemove, API_PatientRemove) 
 {  	
-	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("subtract double 130 15"));		
+	ASSERT_EQ("115.00000", s1.EvaluvateTestcase("subtract double 130 15"));		
 }
 
 
