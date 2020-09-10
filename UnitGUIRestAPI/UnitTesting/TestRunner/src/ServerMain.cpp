@@ -86,24 +86,15 @@ TEST(getBatteryStatus, Example)
 /*!
  * @brief Test cases for API execution.
  */
-TEST(API_Add, API_Add) 
+TEST(API_PatientAdd, API_PatientAdd) 
 {  	
 	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("add double 100 15"));		
 }
 
-TEST(API_Subtract, API_Subtract) 
+
+TEST(API_PatientRemove, API_PatientRemove) 
 {  	
 	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("subtract double 130 15"));		
-}
-
-TEST(API_Mul, API_Mul) 
-{  	
-	ASSERT_EQ("100.000000", s1.EvaluvateTestcase("multiply double 10 10"));		
-}
-
-TEST(API_Div, API_Div) 
-{  	
-	ASSERT_EQ("8.666667", s1.EvaluvateTestcase("divide double 130 15"));
 }
 
 
