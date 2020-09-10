@@ -135,10 +135,7 @@ int main(int argc, char **argv)
 
     testing::InitGoogleTest(&argc, argv);
     LOG_INFO("B4 Return all test;");
-    //return RUN_ALL_TESTS();
-    std::cout << "*******************************" <<std::endl;
-    std::cout << RUN_ALL_TESTS() <<std::endl;
-    std::cout << "*******************************" <<std::endl;
+    int retVal = RUN_ALL_TESTS();
 
     LOG_INFO("B4 threads are joined");
     s1.setStopMain(true);
@@ -147,5 +144,5 @@ int main(int argc, char **argv)
     t2.join();		
     LOG_DEBUG("Ending the main");
 
-    return 0;
+    return retVal;
 }
