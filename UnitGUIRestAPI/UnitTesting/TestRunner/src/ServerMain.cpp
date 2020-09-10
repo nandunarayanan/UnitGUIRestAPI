@@ -136,7 +136,9 @@ int main(int argc, char **argv)
     testing::InitGoogleTest(&argc, argv);
     LOG_INFO("B4 Return all test;");
     //return RUN_ALL_TESTS();
-    RUN_ALL_TESTS();
+    std::cout << "*******************************" <<std::endl;
+    std::cout << RUN_ALL_TESTS() <<std::endl;
+    std::cout << "*******************************" <<std::endl;
 
     LOG_INFO("B4 threads are joined");
     s1.setStopMain(true);
