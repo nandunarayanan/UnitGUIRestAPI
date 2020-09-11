@@ -45,7 +45,7 @@ void ServerUtility::readCSV(std::string filename)
 	std::vector<std::string> vecOfStr;
         std::string tmp;
         char delim = ';'; 
-	bool result = getFileContent("../Testcase/" + filename, vecOfStr);
+	bool result = getFileContent("/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/Testcase/" + filename, vecOfStr);
 	
 	if(result)
     	{

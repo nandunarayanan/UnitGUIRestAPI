@@ -230,11 +230,11 @@ pipeline
 		always 
 		{
 			echo "************Publishing xUnit result  - IN PROGRESS************"
-			xunit([GoogleTest(deleteOutputFiles: true, failIfNotNew: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
+			xunit([GoogleTest(deleteOutputFiles: true, failIfNotNew: true, pattern: 'ReportFromLinuxGtest*.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
 			echo "************Publishing xUnit result from child node1 - Done************"
 			
 			echo "************Publishing Squish test result - IN PROGRESS************"
-			step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1, thresholds: [], tools: [JUnit(deleteOutputFiles: true, failIfNotNew: true, pattern: '*.xml', skipNoTestFiles: false, stopProcessingIfError: true)]])
+			step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1, thresholds: [], tools: [JUnit(deleteOutputFiles: true, failIfNotNew: true, pattern: 'results_*.xml', skipNoTestFiles: false, stopProcessingIfError: true)]])
 			echo "************Publishing Squish test result - Done************"
 			
 			echo "************Publishing Squish test result - IN PROGRESS************"
