@@ -48,7 +48,7 @@ TEST(setAge, setAge)
 }
 TEST(getAge, getAge) 
 {   
- ASSERT_EQ("20", s1.EvaluvateTestcase("getAge long "));  
+ ASSERT_EQ("25", s1.EvaluvateTestcase("getAge long "));  
 }
 TEST(setGender, Example) 
 {   
