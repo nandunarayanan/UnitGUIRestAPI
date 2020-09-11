@@ -42,6 +42,7 @@ function main()
     //returnVal = (returnVal && !(test.compare(table.rowCount, data.length, "table contains as many rows as added data")));
     var test_ret = test.compare(table.rowCount, 7, "table contains as many rows as added data")
     returnVal = (returnVal || !(test_ret));
+    test.log("Retun Value: "+returnVal);
     closeWithoutSaving();
     return returnVal;
 }
