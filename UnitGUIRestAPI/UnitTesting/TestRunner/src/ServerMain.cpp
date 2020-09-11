@@ -143,6 +143,6 @@ int main(int argc, char **argv)
     t1.join();
     t2.join();		
     LOG_DEBUG("Ending the main");
-
+    std::cout << "retVal = " << retVal <<std::endl;
     return retVal;
 }
