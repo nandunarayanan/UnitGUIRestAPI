@@ -31,7 +31,7 @@ function main()
     startApplication("addressbook");
     invokeMenuItem("File", "New");
     var table = waitForObject({"type": "QTableWidget"});
-    test.verify(table.rowCount == 0);
+    var returnVal = !(test.verify(table.rowCount == 0));
     var data = new Array(
         new Array("Andy", "Beach", "andy.beach@nowhere.com", "555 123 6786"),
         new Array("Candy", "Deane", "candy.deane@nowhere.com", "555 234 8765"),
@@ -39,7 +39,8 @@ function main()
     for (var row = 0; row < data.length; ++row)
         addNameAndAddress(data[row]);
 
-    test.compare(table.rowCount, data.length, "table contains as many rows as added data");
+    returnVal = (returnVal && !(test.compare(table.rowCount, data.length, "table contains as many rows as added data")));
     closeWithoutSaving();
+    return returnVal;
 }
 
