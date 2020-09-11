@@ -20,6 +20,7 @@ pipeline
 				echo "Testing for SCM event - Done"
 			}
 		}   
+		
         	/*Checkout the test runner and test environment artifacts*/
 		stage('Checkout')
 		{
@@ -90,7 +91,9 @@ pipeline
 				
 					echo "************Execution of Google Test from the Host server - IN PROGRESS************"
 					
-					sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/BotRun.sh'
+					//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/BotRun.sh'
+					sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/Gtest_Exec BotTestCase.csv --gtest_output="xml:ReportFromLinuxGtestBot.xml" --gtest_filter=-API*'
+					//sh label: '', script: 'cp /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/ReportFromLinuxGtestBot.xml /var/lib/jenkins/workspace/UnitGUIRestfulAPI_Test/'
 					
 					echo "************Execution of Google Test from the Host server - DONE************"
 							
@@ -130,7 +133,9 @@ pipeline
 				
 					echo "************Execution of API level Testing in the Host server - IN PROGRESS************"
 					
-					sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/ApiRun.sh'
+					//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/ApiRun.sh'
+					sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/Gtest_Exec ApiTestCase.csv --gtest_output="xml:ReportFromLinuxGtestApi.xml" --gtest_filter=API*:CSV*'
+					//sh label: '', script: 'cp /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/UnitTesting/TestRunner/src/ReportFromLinuxGtestApi.xml /var/lib/jenkins/workspace/UnitGUIRestfulAPI_Test/'
 					
 					echo "************Execution of API level Testing in the Host server - DONE************"
 						
@@ -161,14 +166,17 @@ pipeline
 				echo "************Sonarqube Coverage Reporting- DONE************"
 			}
 		}
-            
+           
             	/*Desktop GUI testing*/
 		stage('Desktop AUT- GUI Testing [Squish]')
 		{
 			steps 
 			{
 				echo "************Squish Desktop from the [Host Server] - IN PROGRESS************"
-				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/DesktopGUITesting/squishDesktopRun.sh'
+				//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/DesktopGUITesting/squishDesktopRun.sh'
+				sh label: '', script: '''export SQUISH_LICENSEKEY_DIR="/home/bastin"
+                                        echo "==============Running Desktop API Application================"'''
+                sh label: '', script: '''/home/bastin/squish-for-qt-6.6.1/bin/squishrunner --host localhost --port 4322 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/DesktopGUITesting/suite_js --reportgen xmljunit,results_Desktop.xml --exitCodeOnFail 1'''
 				echo "************Squish Desktop from the [Host Server] - DONE************"
 			}
 		}
@@ -188,7 +196,10 @@ pipeline
 			steps 
 			{
 				echo "************Squish from the [Host Server] - IN PROGRESS************"
-				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/WebGUITesting/SquishWebRun.sh'
+				//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/WebGUITesting/SquishWebRun.sh'
+				sh label: '', script: '''export SQUISH_LICENSEKEY_DIR="/home/bastin"
+                                        echo "==============Running Desktop API Application================"'''
+                sh label: '', script: '''/home/bastin/squish-for-web-6.6.1/bin/squishrunner --host localhost --port 4322 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/WebGUITesting/suite_gwt1 --reportgen xmljunit,results_Web_GUI.xml --exitCodeOnFail 1'''
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
@@ -208,7 +219,10 @@ pipeline
 			steps 
 			{
 				echo "************Squish from the [Host Server] - IN PROGRESS************"
-				sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/SquishRun.sh'
+				//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/SquishRun.sh'
+				sh label: '', script: '''export SQUISH_LICENSEKEY_DIR="/home/bastin"
+                                        echo "==============Running Desktop API Application================"'''
+                sh label: '', script: '''/home/bastin/squish-for-web-6.6.1/bin/squishrunner --host localhost --port 4322 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI//RestfulTesting/TestSuite/suite_Ex_bdd_suite2 --reportgen xmljunit,results_RestAPI.xml --exitCodeOnFail 1'''
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
@@ -229,6 +243,11 @@ pipeline
 	{
 		always 
 		{
+		    
+			echo "************Publishing SonarQube test result - IN PROGRESS************"
+			junit 'target/surefire-reports/*.xml'
+			echo "************Publishing SonarQube test result - IN PROGRESS************"
+			
 			echo "************Publishing xUnit result  - IN PROGRESS************"
 			xunit([GoogleTest(deleteOutputFiles: true, failIfNotNew: true, pattern: 'ReportFromLinuxGtest*.xml', skipNoTestFiles: false, stopProcessingIfError: true)])
 			echo "************Publishing xUnit result from child node1 - Done************"
@@ -236,10 +255,6 @@ pipeline
 			echo "************Publishing Squish test result - IN PROGRESS************"
 			step([$class: 'XUnitBuilder', testTimeMargin: '3000', thresholdMode: 1, thresholds: [], tools: [JUnit(deleteOutputFiles: true, failIfNotNew: true, pattern: 'results_*.xml', skipNoTestFiles: false, stopProcessingIfError: true)]])
 			echo "************Publishing Squish test result - Done************"
-			
-			echo "************Publishing Squish test result - IN PROGRESS************"
-			junit 'target/surefire-reports/*.xml'
-			echo "************Publishing SonarQube test result - IN PROGRESS************"
 		}
 	}
 }
