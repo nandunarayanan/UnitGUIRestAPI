@@ -32,7 +32,7 @@ pipeline
 			}
 		}
 		/*Test automation and Product build chaining*/
-		stage('Test automation and Product build chaining')
+		stage('Build Management')
 		{
 			steps 
 			{
@@ -46,7 +46,7 @@ pipeline
 			}
 		}  
 		/*Deployment*/               
-		stage('Deployment to Test Runner/Environment')
+		stage('Deployment')
 		{
 			steps 
 			{
@@ -61,7 +61,7 @@ pipeline
 			}
 		}
             	/*Static code analyzing of AUT*/
-		stage('Sonarqube-AUT Static Code Analysing')
+		stage('Static Code Analyzing')
 		{
 			steps 
 			{
@@ -82,7 +82,7 @@ pipeline
 			}
 		}
             
-		stage('AUT-Unit test execution [class Level]')
+		stage('C++ AUT-Unit testing')
 		{
 			steps 
 			{
@@ -114,7 +114,7 @@ pipeline
 			}
 		}
             	/*Test coverage*/
-		stage('Sonarqube- AUT Class Level Test Coverage')
+		stage('Test Coverage')
 		{
 			steps 
 			{
@@ -124,7 +124,7 @@ pipeline
 			}
 		}
             	/*Component level testing*/
-		stage('AUT-Component test execution [API level]')
+		stage('C++ AUT-Component testing')
 		{
 			steps 
 			{
@@ -157,7 +157,7 @@ pipeline
 		}
             
             	/*Test coverage*/
-		stage('Sonarqube- AUT API Level Test Coverage')
+		stage('Test Coverage')
 		{
 			steps 
 			{
@@ -168,7 +168,7 @@ pipeline
 		}
            
             	/*Desktop GUI testing*/
-		stage('Desktop AUT- GUI Testing [Squish]')
+		stage('Desktop AUT- GUI Testing')
 		{
 			steps 
 			{
@@ -181,7 +181,7 @@ pipeline
 			}
 		}
             	/*Test coverage*/
-		stage('Sonarqube- Desktop GUI Test Coverage')
+		stage('Test Coverage')
 		{
 			steps 
 			{
@@ -191,7 +191,7 @@ pipeline
 			}
 		}
             	/*Web application GUI testing*/
-		stage('Web AUT- GUI Testing [Squish]')
+		stage('Web AUT- GUI Testing')
 		{
 			steps 
 			{
@@ -204,7 +204,7 @@ pipeline
 			}
 		}
 		/*Test coverage*/	
-		stage('Sonarqube- Web GUI Test Coverage')
+		stage('Test Coverage')
 		{
 			steps 
 			{
@@ -214,7 +214,7 @@ pipeline
 			}
 		}
 		/*Web application rest api testing*/            
-		stage('Web AUT- Restful API Testing [Squish]')
+		stage('Web AUT- Restful API Testing')
 		{
 			steps 
 			{
@@ -227,7 +227,7 @@ pipeline
 			}
 		}
             	/*test coverage*/
-		stage('Sonarqube- Restful API Test Coverage')
+		stage('Test Coverage')
 		{
 			steps 
 			{
