@@ -114,7 +114,7 @@ pipeline
 			}
 		}
             	/*Test coverage*/
-		stage('Test Coverage')
+		stage('Test Coverage(C++ Unit Test)')
 		{
 			steps 
 			{
@@ -157,7 +157,7 @@ pipeline
 		}
             
             	/*Test coverage*/
-		stage('Test Coverage')
+		stage('Test Coverage(C++ AUT-Component test)')
 		{
 			steps 
 			{
@@ -181,7 +181,7 @@ pipeline
 			}
 		}
             	/*Test coverage*/
-		stage('Test Coverage')
+		stage('Test Coverage(Desktop AUT)')
 		{
 			steps 
 			{
@@ -199,12 +199,12 @@ pipeline
 				//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/WebGUITesting/SquishWebRun.sh'
 				sh label: '', script: '''export SQUISH_LICENSEKEY_DIR="/home/bastin"
                                         echo "==============Running Desktop API Application================"'''
-                sh label: '', script: '''/home/bastin/squish-for-web-6.6.1/bin/squishrunner --host localhost --port 4322 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/WebGUITesting/suite_gwt1 --reportgen xmljunit,results_Web_GUI.xml --exitCodeOnFail 1'''
+                sh label: '', script: '''/home/bastin/squish-for-web-6.6.1/bin/squishrunner --host proxy61.rt3.io --port 31633 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/WebGUITesting/suite_gwt1 --reportgen xmljunit,results_Web_GUI.xml --exitCodeOnFail 1'''
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
 		/*Test coverage*/	
-		stage('Test Coverage')
+		stage('Test Coverage (Web AUT- GUI Testing)')
 		{
 			steps 
 			{
@@ -222,12 +222,12 @@ pipeline
 				//sh label: '', script: '/home/bastin/UnitGUIRestAPI/UnitGUIRestAPI/RestfulTesting/SquishRun.sh'
 				sh label: '', script: '''export SQUISH_LICENSEKEY_DIR="/home/bastin"
                                         echo "==============Running Desktop API Application================"'''
-                sh label: '', script: '''/home/bastin/squish-for-web-6.6.1/bin/squishrunner --host localhost --port 4322 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI//RestfulTesting/TestSuite/suite_Ex_bdd_suite2 --reportgen xmljunit,results_RestAPI.xml --exitCodeOnFail 1'''
+                sh label: '', script: '''/home/bastin/squish-for-web-6.6.1/bin/squishrunner --host proxy61.rt3.io --port 31633 --testsuite /home/bastin/UnitGUIRestAPI/UnitGUIRestAPI//RestfulTesting/TestSuite/suite_Ex_bdd_suite2 --reportgen xmljunit,results_RestAPI.xml --exitCodeOnFail 1'''
 				echo "************Squish from the [Host Server] - DONE************"
 			}
 		}
             	/*test coverage*/
-		stage('Test Coverage')
+		stage('Test Coverage (Web AUT- Restful API)')
 		{
 			steps 
 			{
