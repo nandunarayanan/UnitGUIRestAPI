@@ -1,7 +1,7 @@
 #include "Battery.h"
 
 /*!
- * @brief private variables
+ * @brief  default constructor
  */
 Battery::Battery()
 {
@@ -22,7 +22,7 @@ Battery::~Battery()
  */
 double Battery::getBatteryPercentage()
 {
-	return m_batteryPercentage;
+    return m_batteryPercentage;
 }
 
 /*!
@@ -31,7 +31,7 @@ double Battery::getBatteryPercentage()
  */
 void Battery::setBatteryPercentage(double percentage)
 {
-	m_batteryPercentage = percentage;
+    m_batteryPercentage = percentage;
 }
 
 /*!
@@ -40,7 +40,7 @@ void Battery::setBatteryPercentage(double percentage)
  */
 BATT Battery::getBatteryStatus()
 {
-	return m_batteryStatus;
+    return m_batteryStatus;
 }
 
 /*!
@@ -49,5 +49,5 @@ BATT Battery::getBatteryStatus()
  */
 void Battery::setBatteryStatus(BATT status)
 {
-	m_batteryStatus = status;
+    m_batteryStatus = status;
 }
