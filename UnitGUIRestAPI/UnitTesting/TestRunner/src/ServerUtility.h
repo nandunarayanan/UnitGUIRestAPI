@@ -26,9 +26,9 @@ class ServerUtility
   
   public:
      
-	/*!
-	 * @brief Public member variables.
-	 */
+    /*!
+     * @brief Public member variables.
+     */
     vector<string> words;
     vector<string> words1;
   
