@@ -17,12 +17,12 @@ using namespace std;
  */
 class ServerUtility
 {
-	/*!
-	 * @brief Private member variables.
-	 */
-	string m_msgRecived;
-	string m_msgPublish;
-	bool m_stop_main;
+    /*!
+     * @brief Private member variables.
+     */
+    string m_msgRecived;
+    string m_msgPublish;
+    bool m_stop_main;
   
   public:
      
