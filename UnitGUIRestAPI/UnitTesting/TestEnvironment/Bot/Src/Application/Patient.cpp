@@ -37,25 +37,25 @@ std::string Patient::getPatientName()
  */
 void Patient::setPatientName(std::string name)
 {
-	m_patientName = name;
-}
-
-/*!
- * @brief This function sets the age
- * @return patient age
- */
-long Patient::getAge()
-{
-	return m_age;
+    m_patientName = name;
 }
 
 /*!
  * @brief This function returns the age of patient
+ * @return patient age
+ */
+long Patient::getAge()
+{
+    return m_age;
+}
+
+/*!
+ * @brief This function sets the age
  * @param age is the patient age
  */
 void Patient::setAge(long age)
 {
-	m_age = age;
+    m_age = age;
 }
 
 /*!
@@ -64,7 +64,7 @@ void Patient::setAge(long age)
  */
 char Patient::getGender()
 {
-	return m_gender;
+    return m_gender;
 }
 
 /*!
@@ -73,7 +73,7 @@ char Patient::getGender()
  */
 void Patient::setGender(char gender)
 {
-	m_gender = gender;
+    m_gender = gender;
 }
 
 /*!
@@ -82,7 +82,7 @@ void Patient::setGender(char gender)
  */
 std::string Patient::getPatientID()
 {
-	return m_patientID;
+    return m_patientID;
 }
 
 /*!
