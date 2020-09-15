@@ -3,16 +3,30 @@
 #include <iostream>
 #include "Api.h"
 
+/*!
+ * @brief Default constructor.
+ */
+ 
 Api::Api()
 {
 
 }
+
+/*!
+ * @brief Default destructor.
+ */
 
 Api::~Api() 
 {
 
 }
 
+/*!
+ * @brief This function runs the test case passed to it and sent back the result after processing
+ * @param testcase contains the testcase string to be processed
+ * @return the result for the given test case
+ */
+ 
 std::string Api::Run(std::string testcase)
 {
 	std::string result = "Fail";
