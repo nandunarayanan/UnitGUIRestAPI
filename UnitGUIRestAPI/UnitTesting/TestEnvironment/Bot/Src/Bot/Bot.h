@@ -18,26 +18,26 @@ class Bot
     /*!
      * @brief Private member variables.
      */
-	Battery m_batt;
-	Patient m_patient;
-	MathLibrary::Arithmetic m_arithmetic;
+    Battery m_batt;
+    Patient m_patient;
+    MathLibrary::Arithmetic m_arithmetic;
 public:
 	
     /*!
      * @brief Default constructor.
      */
-	Bot();
+    Bot();
     /*!
      * @brief Default destructor.
      */
-	~Bot();
+    ~Bot();
 
     /*!
      * @brief This function runs the test case passed to it and sent back the result after processing
      * @param testcase contains the testcase string to be processed
      * @return the result for the given test case
      */
-	std::string RunUnitTest(std::string testcase);
+    std::string RunUnitTest(std::string testcase);
 
 };
 
