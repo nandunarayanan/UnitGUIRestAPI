@@ -5,27 +5,48 @@
 #include "Logger.h"
 
 using namespace CPlusPlusLogging;
-
+/*!
+ * @brief This function returns a message recieved from AUT
+ * @return recieved message(m_msgRecived)
+ */
 string ServerUtility::getMsg()
 {
       return m_msgRecived;
 }
-    
+
+/*!
+ * @brief This function sets message recieved from AUT
+ * @param recieved message
+ */
 void ServerUtility::setMsg(string msg)
 {
       m_msgRecived = msg;
 }
 
+/*!
+ * @brief This function gets the message to be published to AUT
+ * @return message to be published(m_msgPublish)
+ */
 string ServerUtility::getMsgPublish()
 {
       return m_msgPublish;
 }
-    
+
+/*!
+ * @brief This function sets the message to be published to AUT(m_msgPublish)
+ * @param message to be published
+ */
 void ServerUtility::setMsgPublish(string msg)
 {
       m_msgPublish = msg;
 }
 
+/*!
+ * @brief This function evaluate the test case by sending the string 
+ *        passed to it and wait for the result from AUT
+ * @param test case
+ * @return result for the test case recieved from AUT
+ */
 string ServerUtility::EvaluvateTestcase(string msg)
 {
 	setMsgPublish(msg);
@@ -39,6 +60,10 @@ string ServerUtility::EvaluvateTestcase(string msg)
 	return test;
 }
 
+/*!
+ * @brief read the csv file line by line and save it in a vector and seperate the test cases and expected results
+ * @param name of the file to be read
+ */
 void ServerUtility::readCSV(std::string filename)
 {
     	LOG_DEBUG("Came @ CSV_Test: ");
@@ -82,6 +107,11 @@ void ServerUtility::readCSV(std::string filename)
 	}
 }
 
+/*!
+ * @brief read the csv file line by line and save it in a vector
+ * @param fileName name of the file to be read
+ * @param vecOfStrs variable to save data from csv line by line
+ */
 bool ServerUtility::getFileContent(std::string fileName, std::vector<std::string> & vecOfStrs)
 {
     // Open the File
@@ -105,12 +135,19 @@ bool ServerUtility::getFileContent(std::string fileName, std::vector<std::string
     return true;
 }
 
- 
+/*!
+ * @brief This function sets boolean variable to stop sending test message
+ * @param stop boolean variable
+ */
 void ServerUtility::setStopMain(bool s)
 {
    m_stop_main = s;
 }
 
+/*!
+ * @brief This function gets boolean variable to stop sending test message
+ * @return stop boolean variable(m_stop_main)
+ */
 bool ServerUtility::getStopMain()
 {
    return m_stop_main;
