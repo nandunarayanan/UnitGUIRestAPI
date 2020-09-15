@@ -101,13 +101,13 @@ class ServerUtility
 };
 
 /*!
-* @brief Subscriber Main thread function to send the messages from Test runner to test environment
-* @param s ServerUtility class pointer
-*/
+ * @brief Subscriber Main thread function to send the messages from Test runner to test environment
+ * @param s ServerUtility class pointer
+ */
 void SubscriberMain(ServerUtility* s);
 
 /*!
-* @brief Publisher Main thread function to recieve the messages from Test environment to test runner
-* @param s ServerUtility class pointer
-*/
+ * @brief Publisher Main thread function to recieve the messages from Test environment to test runner
+ * @param s ServerUtility class pointer
+ */
 void PublisherMain(ServerUtility* s);
