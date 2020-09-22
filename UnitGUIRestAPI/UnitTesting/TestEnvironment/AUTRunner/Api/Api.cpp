@@ -1,31 +1,66 @@
+/**
+ * File Name      : Api.cpp
+ *  
+ * Description    : This file is responsible for all API's used in the system
+ *
+ * Modifiled Date : 22/09/2020
+ *
+ */
 #include <string>
 #include <sstream>
 #include <iostream>
 #include "Api.h"
 
-/*!
- * @brief Default constructor.
- */
+/** 
+* 
+*Function Name : Api
+*
+* Description  : This function is a default constructor 				   
+* 
+* Parameters   : None
+* 
+* Return Value : None
+* 
+* 
+*/
  
 Api::Api()
 {
 
 }
 
-/*!
- * @brief Default destructor.
- */
+
+/** 
+* 
+*Function Name : Api
+*
+* Description  : This function is a default destructor 				   
+* 
+* Parameters   : None
+* 
+* Return Value : None
+* 
+* 
+*/
 
 Api::~Api() 
 {
 
 }
 
-/*!
- * @brief This function runs the test case passed to it and sent back the result after processing
- * @param testcase contains the testcase string to be processed
- * @return the result for the given test case
- */
+/** 
+* 
+*Function Name : Run
+*
+* Description  : This function runs the test case passed to it and sent back the 
+*		  result after processing 				   
+* 
+* Parameters   : testcase contains the testcase string to be processed
+* 
+* Return Value : String which return to the test runner (the result for the given test case).
+* 
+* 
+*/
  
 std::string Api::Run(std::string testcase)
 {

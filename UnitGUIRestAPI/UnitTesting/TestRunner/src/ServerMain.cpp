@@ -1,7 +1,10 @@
 
-/*!
- * @file ServerMain.cpp
- * This source file contains the testcases and main function.
+ /**
+ * File Name    	: ServerMain.cpp
+ *  
+ * Description  	: This source file contains the testcases and main function
+ *
+ * Modifiled Date	: 22/09/2020
  *
  */
 
@@ -31,9 +34,8 @@ using namespace rtps;
 ServerUtility s1;
 std::string filename = "BotTestCase.csv";
 
-/*!
- * @brief Test cases for direct execution.
- */
+/* Following are the test cases for direct execution.*/
+
 TEST(setPatientName, setPatientName) 
 {   
  ASSERT_EQ("Success", s1.EvaluvateTestcase("setPatientName void Bob "));  
@@ -83,9 +85,7 @@ TEST(getBatteryStatus, Example)
  ASSERT_EQ("0", s1.EvaluvateTestcase("getBatteryStatus int "));  
 }
 
-/*!
- * @brief Test cases for API execution.
- */
+/*Test cases for API execution*/
 TEST(API_PatientAdd, API_PatientAdd) 
 {  	
 	ASSERT_EQ("115.000000", s1.EvaluvateTestcase("add double 100 15"));		
@@ -98,9 +98,7 @@ TEST(API_PatientRemove, API_PatientRemove)
 }
 
 
-/*!
- * @brief Test cases for CSV test cases.
- */
+/*Test cases for CSV test cases */
 TEST(CSV_Test, CSV_Test) 
 {  
 	s1.readCSV(filename);
@@ -110,9 +108,25 @@ TEST(CSV_Test, CSV_Test)
 	}
 }
 
-/*!
- * @brief Main function.
- */
+ /** 
+  * 
+  *Function Name : main
+  *
+  * Description  : This is the main function of the Test Runner.
+  * 		   In this function a sample conan execution is showcased.
+  * 		   Similarly to showcase the working of Eprosima DDS in 2 
+  * 		   threads; one for the publisher and other for the subscriber
+  * 		   At the end both will join if every process is successfully 
+  * 		   completed				   
+  * 
+  * Parameters   : Testcase filename (*.csv)
+  * 
+  * Return Value : integear (if all test cases are passed '0' else '1')
+  *		    This is to skip the futher steps in jenkins if any failure
+  * 		    in the google test
+  * 
+  * 
+  */
 int main(int argc, char **argv) 
 {
     if(1 == argc)

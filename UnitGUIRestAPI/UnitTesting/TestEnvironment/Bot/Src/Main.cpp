@@ -1,3 +1,13 @@
+/**
+* File Name      : Main.cpp
+*  
+* Description    : This file is responsible Bot related
+*					processing in the system
+*
+* Modifiled Date : 22/09/2020
+*
+*/
+
 #include <iostream>
 #include <thread>
 #include "Application/Patient.h"
@@ -5,6 +15,22 @@
 #include "Bot/Bot.h"
 #include "Dds/DataPacketPubSubTypes.h"
 #include "Dds/AUTUtility.h"
+
+/** 
+* 
+*Function Name : main
+*
+* Description  : This is the main function of the Bot in the Test Environment.
+* 		    2 threads are running in this main to run the RTPS system in BOT
+* 		   one for the publisher(to publish the result) and 
+* 		   other for the subscriber (to receive the function call)			   
+* 
+* Parameters   : None
+* 
+* Return Value :  0
+* 
+* 
+*/
 
 int main()
 {

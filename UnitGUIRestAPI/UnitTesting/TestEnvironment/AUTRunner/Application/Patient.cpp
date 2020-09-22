@@ -1,11 +1,31 @@
+ /**
+ * File Name      : Patient.cpp
+ *  
+ * Description    : This file is responsible for all Patient related 
+ *					processing in the system
+ *
+ * Modifiled Date : 22/09/2020
+ *
+ */
 #include "Patient.h"
 
 #include <time.h>
 #include <iostream>
 #include <stdlib.h>
-/*!
- * @brief default constructor
- */
+
+/** 
+* 
+*Function Name : Patient
+*
+* Description  : This function is a default constructor 				   
+* 
+* Parameters   : None
+* 
+* Return Value : None
+* 
+* 
+*/
+  
 Patient::Patient():
 	m_patientName(""),
 	m_age(0),
@@ -13,75 +33,152 @@ Patient::Patient():
 	m_patientID("INVALID")
 {
 }
-/*!
- * @brief default destructor
- */
+/** 
+* 
+*Function Name : Patient
+*
+* Description  : This function is a default destructor 				   
+* 
+* Parameters   : None
+* 
+* Return Value : None
+* 
+* 
+*/
 Patient::~Patient()
 {
 }
-/*!
- * @brief This function returns the patient name
- * @return the patient name
- */
+/** 
+* 
+*Function Name : getPatientName
+*
+* Description  : This function returns the patient name			   
+* 
+* Parameters   : None
+* 
+* Return Value : the patient name
+* 
+* 
+*/
  
 std::string Patient::getPatientName()
 {
 	return m_patientName;
 }
 
-/*!
- * @brief This function sets the patient name
- * @param name patient name
- */
+/** 
+* 
+*Function Name : setPatientName
+*
+* Description  : This function is a default destructor 				   
+* 
+* Parameters   : patient name
+* 
+* Return Value : None
+* 
+* 
+*/
+
 void Patient::setPatientName(std::string name)
 {
 	m_patientName = name;
 }
-/*!
- * @brief This function returns the age of patient
- * @param age is the patient age
- */
+/** 
+* 
+*Function Name : getAge
+*
+* Description  : This function sets the age of patient 				   
+* 
+* Parameters   : None
+* 
+* Return Value : gender of the patient
+* 
+* 
+*/
 long Patient::getAge()
 {
 	return m_age;
 }
-/*!
- * @brief This function sets the age
- * @return patient age
- */
+/** 
+* 
+*Function Name : setAge
+*
+* Description  : This function set the age of patient 				   
+* 
+* Parameters   : age of the patient
+* 
+* Return Value : None
+* 
+* 
+*/
 void Patient::setAge(long age)
 {
 	m_age = age;
 }
 
-/*!
- * @brief This function returns the gender of patient
- * @return the patient gender
- */
+/** 
+* 
+*Function Name : getGender
+*
+* Description  : This function returns the gender of patient 				   
+* 
+* Parameters   : None
+* 
+* Return Value : gender of the patient
+* 
+* 
+*/
 char Patient::getGender()
 {
 	return m_gender;
 }
-/*!
- * @brief This function returns the gender of patient
- * @param gender is the patient gender
- */
+/** 
+* 
+*Function Name : setGender
+*
+* Description  : This function returns the gender of patient 				   
+* 
+* Parameters   : gender of the patient
+* 
+* Return Value : None
+* 
+* 
+*/
 void Patient::setGender(char gender)
 {
 	m_gender = gender;
 }
-/*!
- * @brief This function returns the patient ID
- * @param ID is the patient
- */
+
+/** 
+* 
+*Function Name : getPatientID
+*
+* Description  :  This function returns the patient ID 				   
+* 
+* Parameters   : None
+* 
+* Return Value : ID of the patient
+* 
+* 
+*/
+
 std::string Patient::getPatientID()
 {
 	return m_patientID;
 }
 
-/*!
- * @brief This function generates a random patientID
- */
+/** 
+* 
+*Function Name : setPatientName
+*
+* Description  :  This function generates a random patientID 				   
+* 
+* Parameters   : None
+* 
+* Return Value : None
+* 
+* 
+*/
 void Patient::generatePatientID()
 {
     srand(time(0));
